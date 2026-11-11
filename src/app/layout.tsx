@@ -4,36 +4,49 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://sugaroilhub.netlify.app";
+const siteUrl = "https://sugaroilshop.netlify.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Sugar Oil Hub | Wholesale Sugar & Oil Supplier in Lonand",
+    default:
+      "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
     template: "%s | Sugar Oil Hub",
   },
 
   description:
-    "Sugar Oil Hub supplies wholesale sugar, edible oil and bulk oil products in Lonand, Maharashtra. Contact us for reliable wholesale supply.",
+    "Jayesh Jayantilal Doshi Sugar & Oil Wholesale in Lonand, Satara, Maharashtra. Contact us for wholesale sugar and cooking oil supply. Enquire about products, bulk quantities and pricing.",
 
-  verification: {
-    google: "gzz9nFW7hW1yiom8xKgSM9crWVSeJnCUCghF7wBtVzU",
+  applicationName: "Sugar Oil Wholesale",
+
+  alternates: {
+    canonical: "/",
   },
 
+  // verification: {
+  //   google: "gzz9nFW7hW1yiom8xKgSM9crWVSeJnCUCghF7wBtVzU",
+  // },
+
   openGraph: {
-    title: "Sugar Oil Hub | Wholesale Sugar & Oil",
+    title:
+      "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
     description:
-      "Your reliable wholesale partner for sugar and edible oil supply in Lonand, Maharashtra.",
-    type: "website",
+      "Your wholesale partner for sugar and cooking oil in Lonand, Satara, Maharashtra.",
     url: siteUrl,
+    siteName: "Sugar Oil Hub",
+    locale: "en_IN",
+    type: "website",
     images: ["/images/sugar-oil-placeholder.svg"],
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
@@ -41,7 +54,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body>
         <Header />
         <main>{children}</main>
