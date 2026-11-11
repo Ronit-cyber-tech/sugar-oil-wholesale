@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
+import { supabase } from "../lib/supabase";
 
 type Review = {
   id: string;
@@ -10,31 +12,24 @@ type Review = {
   date: string;
 };
 
-const STORAGE_KEY = "business-customer-reviews";
+type SupabaseReview = {
+  id: string;
+  name: string;
+  text: string;
+  rating: number;
+  created_at: string;
+};
+
 const REVIEWS_PER_PAGE = 6;
 
-function readSavedReviews(): Review[] {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return [];
-
-    const parsed: unknown = JSON.parse(saved);
-
-    if (!Array.isArray(parsed)) return [];
-
-    return parsed.filter(
-      (item): item is Review =>
-        typeof item === "object" &&
-        item !== null &&
-        "id" in item &&
-        "name" in item &&
-        "text" in item &&
-        "rating" in item &&
-        "date" in item,
-    );
-  } catch {
-    return [];
-  }
+function toReview(row: SupabaseReview): Review {
+  return {
+    id: row.id,
+    name: row.name,
+    text: row.text,
+    rating: row.rating,
+    date: row.created_at,
+  };
 }
 
 function Stars({
@@ -78,103 +73,88 @@ function Stars({
 export default function ReviewsBoard() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [ready, setReady] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
   const [rating, setRating] = useState(5);
-  const [editingId, setEditingId] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(REVIEWS_PER_PAGE);
   const [message, setMessage] = useState("");
+  const [messageIsError, setMessageIsError] = useState(false);
 
   useEffect(() => {
-    setReviews(readSavedReviews());
-    setReady(true);
+    let cancelled = false;
+
+    async function loadReviews() {
+      const { data, error } = await supabase
+        .from("reviews")
+        .select("id, name, text, rating, created_at")
+        .order("created_at", { ascending: false });
+
+      if (cancelled) return;
+
+      if (error) {
+        setMessage("Could not load reviews. Please try again later.");
+        setMessageIsError(true);
+      } else {
+        setReviews((data ?? []).map((row) => toReview(row as SupabaseReview)));
+      }
+
+      setReady(true);
+    }
+
+    void loadReviews();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  function saveReviews(nextReviews: Review[]) {
-    setReviews(nextReviews);
-
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(nextReviews));
-    } catch {
-      setMessage("Could not save reviews in this browser.");
-    }
-  }
-
-  function submitReview(event: FormEvent<HTMLFormElement>) {
+  async function submitReview(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setMessage("");
+    setMessageIsError(false);
 
     const cleanName = name.trim();
     const cleanText = text.trim();
 
     if (cleanName.length < 2) {
       setMessage("Please enter a name with at least 2 characters.");
+      setMessageIsError(true);
       return;
     }
 
     if (cleanText.length < 10) {
       setMessage("Please write at least 10 characters for your review.");
+      setMessageIsError(true);
       return;
     }
 
-    if (editingId) {
-      const updated = reviews.map((review) =>
-        review.id === editingId
-          ? { ...review, name: cleanName, text: cleanText, rating }
-          : review,
-      );
+    setSubmitting(true);
 
-      saveReviews(updated);
-      setMessage("Your review was updated.");
-    } else {
-      const newReview: Review = {
-        id: crypto.randomUUID(),
+    const { data, error } = await supabase
+      .from("reviews")
+      .insert({
         name: cleanName,
         text: cleanText,
         rating,
-        date: new Date().toISOString(),
-      };
+      })
+      .select("id, name, text, rating, created_at")
+      .single();
 
-      saveReviews([newReview, ...reviews]);
-      setVisibleCount((count) => Math.max(count, REVIEWS_PER_PAGE));
-      setMessage("Your review was saved in this browser.");
+    setSubmitting(false);
+
+    if (error) {
+      setMessage("Could not submit your review. Please try again.");
+      setMessageIsError(true);
+      return;
     }
 
+    setReviews((current) => [toReview(data as SupabaseReview), ...current]);
+    setVisibleCount((count) => Math.max(count, REVIEWS_PER_PAGE));
     setName("");
     setText("");
     setRating(5);
-    setEditingId(null);
-  }
-
-  function editReview(review: Review) {
-    setEditingId(review.id);
-    setName(review.name);
-    setText(review.text);
-    setRating(review.rating);
-    setMessage("");
-
-    document
-      .getElementById("review-form")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function deleteReview(id: string) {
-    if (!window.confirm("Delete this review?")) return;
-
-    saveReviews(reviews.filter((review) => review.id !== id));
-
-    if (editingId === id) {
-      cancelEdit();
-    }
-
-    setMessage("Review deleted.");
-  }
-
-  function cancelEdit() {
-    setEditingId(null);
-    setName("");
-    setText("");
-    setRating(5);
-    setMessage("");
+    setMessage("Thank you for sharing your experience!");
   }
 
   const visibleReviews = reviews.slice(0, visibleCount);
@@ -196,7 +176,9 @@ export default function ReviewsBoard() {
 
         {ready && reviews.length === 0 && (
           <div className="empty-state">
-            <span className="empty-star" aria-hidden="true">★</span>
+            <span className="empty-star" aria-hidden="true">
+              ★
+            </span>
             <h3>No reviews yet</h3>
             <p>Be the first to share your experience.</p>
           </div>
@@ -216,14 +198,6 @@ export default function ReviewsBoard() {
 
               <div className="review-card-bottom">
                 <strong>{review.name}</strong>
-                <div className="review-actions">
-                  <button type="button" onClick={() => editReview(review)}>
-                    Edit
-                  </button>
-                  <button type="button" onClick={() => deleteReview(review.id)}>
-                    Delete
-                  </button>
-                </div>
               </div>
             </article>
           ))}
@@ -241,10 +215,8 @@ export default function ReviewsBoard() {
       </div>
 
       <aside className="review-form-card" id="review-form">
-        <p className="eyebrow">
-          {editingId ? "EDIT YOUR REVIEW" : "SHARE YOUR EXPERIENCE"}
-        </p>
-        <h2>{editingId ? "Update your review" : "Write a review"}</h2>
+        <p className="eyebrow">SHARE YOUR EXPERIENCE</p>
+        <h2>Write a review</h2>
 
         <form className="review-form" onSubmit={submitReview}>
           <label>
@@ -277,23 +249,16 @@ export default function ReviewsBoard() {
             />
           </label>
 
-          <button className="button" type="submit">
-            {editingId ? "Save changes" : "Submit review"}
+          <button className="button" type="submit" disabled={submitting}>
+            {submitting ? "Submitting…" : "Submit review"}
           </button>
-
-          {editingId && (
-            <button
-              className="review-cancel"
-              type="button"
-              onClick={cancelEdit}
-            >
-              Cancel
-            </button>
-          )}
         </form>
 
         {message && (
-          <p className="review-message success" role="status">
+          <p
+            className={`review-message ${messageIsError ? "error" : "success"}`}
+            role="status"
+          >
             {message}
           </p>
         )}
