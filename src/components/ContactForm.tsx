@@ -35,8 +35,7 @@ export default function ContactForm() {
     const form = event.currentTarget;
 
     if (
-      WEB3FORMS_ACCESS_KEY === "PASTE_YOUR_ACCESS_KEY_HERE"
-    ) {
+!WEB3FORMS_ACCESS_KEY.trim()    ) {
       setState({
         kind: "error",
         message: "Please configure the enquiry form first.",
