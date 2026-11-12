@@ -63,7 +63,7 @@ export default function HomePage() {
         <div className="home-story-copy">
           <p>
             We supply sugar and cooking oil to customers. Get in
-            touch with your product and quantity requirements, and we can
+            touch with product and quantity requirements, and we can
             discuss the available options with you.
           </p>
           <Link className="home-secondary-link" href="/about">

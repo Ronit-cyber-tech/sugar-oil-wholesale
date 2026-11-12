@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: {
     default:
       "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
-    template: "%s | Sugar Oil Hub",
+    template: "%s | Sugar Oil Wholesale",
   },
 
   description:
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       "Your wholesale partner for sugar and cooking oil in Lonand, Satara, Maharashtra.",
     url: siteUrl,
-    siteName: "Sugar Oil Hub",
+    siteName: "Sugar Oil Wholesale",
     locale: "en_IN",
     type: "website",
     images: ["/images/sugar-oil-placeholder.svg"],
