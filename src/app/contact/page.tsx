@@ -3,8 +3,12 @@ import ContactForm from "../../components/ContactForm";
 import { business } from "../../lib/business";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact us about sugar and edible oil wholesale orders.",
+  title: "Contact Sugar and Oil Wholesaler in Lonand",
+  description:
+    "Contact Jayesh Jayantilal Doshi Sugar & Oil Wholesale in Lonand, Satara, Maharashtra. Call, WhatsApp or submit an enquiry about wholesale sugar and cooking oil orders.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 function PhoneIcon() {

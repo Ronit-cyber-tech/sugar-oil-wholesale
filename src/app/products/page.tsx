@@ -3,8 +3,12 @@ import ProductCatalogue from "@/components/ProductCatalogue";
 import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Products",
-  description: "Browse our wholesale sugar and oil products.",
+  title: "Wholesale Sugar and Cooking Oil Products",
+  description:
+    "Explore sugar and cooking oil products from Jayesh Jayantilal Doshi in Lonand, Satara. Contact us for wholesale pricing, packaging details and product availability.",
+  alternates: {
+    canonical: "/products",
+  },
 };
 
 const sugarCount = products.filter(

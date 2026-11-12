@@ -1,5 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: {
+    absolute:
+      "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
+  },
+  description:
+    "Looking for sugar or cooking oil wholesale in Lonand, Satara? Contact Jayesh Jayantilal Doshi for product details, bulk quantities and wholesale enquiries.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function HomePage() {
   return (

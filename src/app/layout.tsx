@@ -11,30 +11,22 @@ export const metadata: Metadata = {
 
   title: {
     default:
-      "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
-    template: "%s | Sugar Oil Wholesale",
+      "Sugar & Oil Wholesale in Lonand, Satara | Jayesh Jayantilal Doshi",
+    template: "%s | Jayesh Jayantilal Doshi",
   },
 
   description:
-    "Jayesh Jayantilal Doshi Sugar & Oil Wholesale in Lonand, Satara, Maharashtra. Contact us for wholesale sugar and cooking oil supply. Enquire about products, bulk quantities and pricing.",
+    "Jayesh Jayantilal Doshi is a sugar and cooking oil wholesale business in Lonand, Satara, Maharashtra. Contact us for wholesale products, bulk quantities and enquiries.",
 
-  applicationName: "Sugar Oil Wholesale",
-
-  alternates: {
-    canonical: "/",
-  },
-
-  // verification: {
-  //   google: "gzz9nFW7hW1yiom8xKgSM9crWVSeJnCUCghF7wBtVzU",
-  // },
+  applicationName: "Jayesh Jayantilal Doshi Sugar & Oil Wholesale",
 
   openGraph: {
     title:
       "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
     description:
-      "Your wholesale partner for sugar and cooking oil in Lonand, Satara, Maharashtra.",
+      "Wholesale sugar and cooking oil supply in Lonand, Satara, Maharashtra. Contact us for product and bulk order enquiries.",
     url: siteUrl,
-    siteName: "Sugar Oil Wholesale",
+    siteName: "Jayesh Jayantilal Doshi Sugar & Oil Wholesale",
     locale: "en_IN",
     type: "website",
     images: ["/images/sugar-oil-placeholder.svg"],

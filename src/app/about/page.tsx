@@ -3,8 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About us",
-  description: "Learn about our wholesale sugar and edible oil business.",
+  title: "About Our Business and History in Lonand",
+  description:
+    "Discover the history of Jayesh Jayantilal Doshi Sugar & Oil Wholesale. Established in Lonand in 1978, our family business has grown from jaggery trading to sugar and cooking oil wholesale.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

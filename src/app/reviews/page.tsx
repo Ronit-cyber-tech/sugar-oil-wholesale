@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import ReviewsBoard from "../../components/ReviewsBoard";
 
 export const metadata: Metadata = {
-  title: "Customer reviews",
-  description: "Read and share customer reviews.",
+  title: "Customer Reviews and Feedback",
+  description:
+    "Read customer feedback and share your experience with Jayesh Jayantilal Doshi Sugar & Oil Wholesale in Lonand, Maharashtra.",
+  alternates: {
+    canonical: "/reviews",
+  },
 };
 
 export default function ReviewsPage() {
