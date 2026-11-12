@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { business } from "@/lib/business";
 
 const siteUrl = "https://sugaroilshop.netlify.app";
 
@@ -41,6 +42,24 @@ export const metadata: Metadata = {
     },
   },
 };
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: business.name,
+  url: "https://sugaroilshop.netlify.app",
+  description:
+    "Wholesale supplier of sugar and cooking oil in Lonand, Satara, Maharashtra.",
+  telephone: business.phone,
+  email: business.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress:
+      "Navi Peth, opposite of Jain Mandir, Khandala Road",
+    addressLocality: "Lonand",
+    addressRegion: "Maharashtra",
+    addressCountry: "IN",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -48,6 +67,12 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <body>
+        <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+    }}
+  />
         <Header />
         <main>{children}</main>
         <Footer />
