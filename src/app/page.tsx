@@ -45,20 +45,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        { <div className="home-hero-visual">
-          <Image
-            src="/images/Front.jpeg"
-            alt="Temporary image placeholder for sugar and cooking oil products"
-            fill
-            priority
-            sizes="(max-width: 800px) 100vw, 52vw"
-          />
-          {/* { <div className="home-image-label">
-            <span>OUR PRODUCT RANGE</span>
-            <strong>Sugar &amp; cooking oil</strong>
-          </div> } */}
-          
-        </div> }
+        
+<div className="home-hero-visual">
+  <Image
+    src="/images/Front2.jpeg"
+    alt="Jayesh Jayantilal Doshi sugar and oil wholesale shop in Lonand"
+    fill
+    priority
+    sizes="(max-width: 800px) 100vw, 52vw"
+  />
+</div>
+
       </section>
 
 

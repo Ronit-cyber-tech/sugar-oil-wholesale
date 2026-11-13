@@ -2310,3 +2310,47 @@ h2 em {
   border-radius: 18px;
   object-fit: cover;
 }
+
+/* Premium storefront image treatment */
+.home-hero-visual {
+  position: relative;
+  width: 100%;
+  height: 430px;
+  overflow: visible;
+  isolation: isolate;
+  border-radius: 22px;
+}
+
+/* Decorative green frame behind the photo */
+.home-hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 16px -14px -14px 16px;
+  background: #245b3b;
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+/* Actual shop photograph */
+.home-hero-visual img {
+  object-fit: cover;
+  object-position: center;
+  opacity: 1;
+  border-radius: 22px;
+  border: 4px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 20px 45px rgba(24, 55, 36, 0.16);
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .home-hero-visual {
+    height: 300px;
+    margin: 20px 10px 15px 0;
+  }
+
+  .home-hero-visual::before {
+    inset: 10px -8px -8px 10px;
+  }
+}
+    
