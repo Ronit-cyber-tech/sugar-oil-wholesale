@@ -3,9 +3,9 @@ import ProductCatalogue from "@/components/ProductCatalogue";
 import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Wholesale Sugar and Cooking Oil Products",
+  title: "Wholesale Sugar and Oil Products",
   description:
-    "Explore sugar and cooking oil products from Jayesh Jayantilal Doshi in Lonand, Satara. Contact us for wholesale pricing, packaging details and product availability.",
+    "Explore sugar and oil products from Jayesh Jayantilal Doshi in Lonand, Satara. Contact us for wholesale pricing, packaging details and product availability.",
   alternates: {
     canonical: "/products",
   },

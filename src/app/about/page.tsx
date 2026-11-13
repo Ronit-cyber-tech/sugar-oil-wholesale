@@ -5,7 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About Our Business and History in Lonand",
   description:
-    "Discover the history of Jayesh Jayantilal Doshi Sugar & Oil Wholesale. Established in Lonand in 1978, our family business has grown from jaggery trading to sugar and cooking oil wholesale.",
+    "Discover the history of Jayesh Jayantilal Doshi Sugar & Oil Wholesale. Established in Lonand in 1978, our family business has grown from jaggery trading to sugar and oil wholesale.",
   alternates: {
     canonical: "/about",
   },
@@ -36,7 +36,7 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <span className="about-editorial-side-note">SUGAR · COOKING OIL</span>
+          <span className="about-editorial-side-note">SUGAR · OIL</span>
         </div>
       </section>
 
@@ -63,7 +63,7 @@ export default function AboutPage() {
               suppliers. Carrying forward this legacy, Shri Jayesh Jayantilal
               Doshi, further developed the business and strengthened its
               reputation for trust and quality service. Today, our shop proudly
-              operates as a wholesale supplier of sugar and cooking oil, serving
+              operates as a wholesale supplier of sugar and oil, serving
               retailers and customers with reliable products and fair pricing.
               With more than four decades of experience, our business continues
               to grow while maintaining the same commitment to honesty, quality,
@@ -86,7 +86,7 @@ export default function AboutPage() {
         <article className="value-card">
           <p className="eyebrow">OUR MISSION</p>
           <h3>
-            Our mission is to provide quality sugar and cooking oil at fair
+            Our mission is to provide quality sugar and oil at fair
             prices, while building lasting relationships through honesty, trust,
             and reliable service.
           </h3>

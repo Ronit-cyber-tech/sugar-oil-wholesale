@@ -7,7 +7,7 @@ export const metadata: Metadata = {
       "Jayesh Jayantilal Doshi | Sugar & Oil Wholesale in Lonand",
   },
   description:
-    "Looking for sugar or cooking oil wholesale in Lonand, Satara? Contact Jayesh Jayantilal Doshi for product details, bulk quantities and wholesale enquiries.",
+    "Looking for sugar or oil wholesale in Lonand, Satara? Contact Jayesh Jayantilal Doshi for product details, bulk quantities and wholesale enquiries.",
   alternates: {
     canonical: "/",
   },
@@ -18,7 +18,7 @@ export default function HomePage() {
     <>
       <section className="home-hero home-hero-background">
         <div className="home-hero-content">
-          <p className="eyebrow">SUGAR &amp; COOKING OIL WHOLESALER</p>
+          <p className="eyebrow">SUGAR &amp; OIL WHOLESALER</p>
 
           <h2>
             The Sweetness of Quality.
@@ -27,7 +27,7 @@ export default function HomePage() {
           </h2>
 
           <p className="home-hero-description">
-            Looking for sugar or cooking oil? You Are at the Right Place.
+            Looking for sugar or oil? You Are at the Right Place.
           </p>
 
           <div className="home-hero-actions">
@@ -71,7 +71,7 @@ export default function HomePage() {
 
         <div className="home-story-copy">
           <p>
-            We supply sugar and cooking oil to customers. Get in
+            We supply sugar and oil to customers. Get in
             touch with product and quantity requirements, and we can
             discuss the available options with you.
           </p>

@@ -5,7 +5,7 @@ import { business } from "../../lib/business";
 export const metadata: Metadata = {
   title: "Contact Sugar and Oil Wholesaler in Lonand",
   description:
-    "Contact Jayesh Jayantilal Doshi Sugar & Oil Wholesale in Lonand, Satara, Maharashtra. Call, WhatsApp or submit an enquiry about wholesale sugar and cooking oil orders.",
+    "Contact Jayesh Jayantilal Doshi Sugar & Oil Wholesale in Lonand, Satara, Maharashtra. Call, WhatsApp or submit an enquiry about wholesale sugar and oil orders.",
   alternates: {
     canonical: "/contact",
   },
